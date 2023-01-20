@@ -24,6 +24,7 @@ const createPostCtrl = expressAsyncHandler(async (req, res) => {
     res.json(post);
     fs.unlinkSync(localpath);
   } catch (error) {
+    console.log(error);
     res.json(error);
   }
 });
