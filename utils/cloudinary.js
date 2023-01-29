@@ -1,5 +1,3 @@
-const e = require("express");
-
 const cloudinary = require("cloudinary").v2;
 
 const uploadImgToCloudinay = async (file) => {
@@ -21,5 +19,4 @@ const uploadImgToCloudinay = async (file) => {
     return error;
   }
 };
-
 module.exports = uploadImgToCloudinay;

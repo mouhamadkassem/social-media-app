@@ -11,7 +11,7 @@ const errHandler = (err, req, res, next) => {
   const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
   res.status(statusCode);
   res.json({
-    massage: err?.message,
+    message: err?.message,
     stact: process.env.NODE_ENV === "production" ? null : err.stack,
   });
 };

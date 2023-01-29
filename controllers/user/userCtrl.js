@@ -11,6 +11,12 @@ const fs = require("fs");
 const userRegisterCtrl = expressAsyncHandler(async (req, res) => {
   const data = req?.body;
 
+  const user = await User.findOne({ email: req?.body?.email });
+
+  if (user) {
+    throw new Error("this email is already exist");
+  }
+
   try {
     const user = await User.create({
       firstName: data?.firstName,
@@ -35,7 +41,7 @@ const userLoginCtrl = expressAsyncHandler(async (req, res) => {
   const userLogin = await User.findOne({ email: req.body.email });
 
   if (!userLogin) {
-    throw new Error("check your email");
+    throw new Error("check your email or password");
   }
 
   const isMatch = await userLogin?.ifPasswordMatch(password);

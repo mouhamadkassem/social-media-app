@@ -9,7 +9,7 @@ const uploadImgToCloudinay = require("../../utils/cloudinary");
 const createPostCtrl = expressAsyncHandler(async (req, res) => {
   const userLogin = req?.user?._id;
 
-  const { image, description } = req?.body;
+  const { description } = req?.body;
 
   const localpath = `public/image/profile/${req.file.filename}`;
 
@@ -24,7 +24,6 @@ const createPostCtrl = expressAsyncHandler(async (req, res) => {
     res.json(post);
     fs.unlinkSync(localpath);
   } catch (error) {
-    console.log(error);
     res.json(error);
   }
 });

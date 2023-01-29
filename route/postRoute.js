@@ -24,7 +24,6 @@ postRoutes.post(
 );
 postRoutes.get("/fetch-all", authMiddleware, fetchAllPostsCtrl);
 postRoutes.get("/fetch-post/:id", authMiddleware, fetchPostCtrl);
-// postRoutes.post("/create", authMiddleware, createPostCtrl);
 postRoutes.put("/like", authMiddleware, likePostCtrl);
 postRoutes.put("/dislike", authMiddleware, disLikePostCtrl);
 postRoutes.delete("/delete-post/:id", authMiddleware, deletePostCtrl);

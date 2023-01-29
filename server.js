@@ -9,7 +9,7 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server, {
   cors: {
-    origin: "https://social-media-app-v1.onrender.com",
+    origin: "http://localhost:3000",
   },
 });
 const userRoute = require("./route/userRoute");
@@ -32,13 +32,16 @@ app.use(express.json());
 
 io.on("connection", (socket) => {
   socket.on("join-room", (data) => {
-    console.log("room join : ", data);
     socket.join(data);
   });
 
   socket.on("send-message", (data) => {
-    console.log(data.content);
     socket.to(data?.chatId).emit("receive-message", data);
+  });
+  socket.on("isTyping", (data) => {
+    console.log(data);
+
+    socket.to(data.chatId).emit("typing", data);
   });
 });
 
